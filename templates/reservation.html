@@ -1,22 +1,27 @@
+{% load socialaccount %}
+{% providers_media_js %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <link rel="stylesheet" href="{% static 'css/reset.css' %}" />
     <link rel="stylesheet" href="{% static 'css/reservation.css' %}" />
-
     <title>Document</title>
-
-</head>
-<body>
-    <button>
-        <a href="">
-            카카오 로그인하기
-        </a>
-    </button>
-</body>
+  </head>
+  <body>
+    <span>
+      <a href="{% url 'blind:log_in' %}" class="">Login</a>
+      <a href="{% url 'blind:sign_up' %}" class="">Signup</a>
+    </span>
+    <form action="{% provider_login_url 'kakao' %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="">
+        <img src="{% static 'img/kakao-logo.png' %}">
+      </button>
+    </form>
+  </body>
 </html>
