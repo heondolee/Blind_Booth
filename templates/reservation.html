@@ -17,13 +17,9 @@
     <a href="{% url 'blind:log_out'%}" class="btn btn-outline-success mt-2">Logout</a>
     <h6>{{user.username}}님이 로그인중</h6>
     {% else %}
-    <span>
-      <a href="{% url 'blind:log_in' %}" class="">Login</a>
-    </span>
     <form action="{% provider_login_url 'kakao' %}" method="post">
       {% csrf_token %}
       <button type="submit" class="">
-        <!-- <img src="{% static 'img/kakao-logo.png' %}"> -->
         카카오 로그인
       </button>
     </form>
