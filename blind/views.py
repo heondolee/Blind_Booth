@@ -1,10 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from re import template
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from blind.forms import PersonForm
-from blind.models import User, Person
+from blind.models import User, Person, TimeBox
+import csv
+
 
 
 
@@ -39,3 +41,20 @@ def info_update(request):
         form = PersonForm(instance=person)
     return render(request, 'info_update.html', {'form': form})
 
+def csvToModel(request):
+    TimeBox.objects.all().delete()
+
+    a = open("./static/csv/timezone.csv",'r',encoding='CP949')
+    
+    reader_timezone = csv.reader(a)
+
+    timeBoxes= []
+
+    for row in reader_timezone:
+        timeBoxes.append(TimeBox(day=row[0],timeSlot=row[1],timeMin=row[2]))
+    
+    TimeBox.objects.bulk_create(timeBoxes)
+
+    a.close()
+
+    return HttpResponse('create model~')

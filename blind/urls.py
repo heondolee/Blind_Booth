@@ -13,5 +13,7 @@ urlpatterns = [
     path('', views.reservation, name='reservation'),
     path("logout/", views.log_out, name="log_out"),
     path("info_update/", views.info_update, name="info_update"),
-    path("accounts/", include('allauth.urls'))
+    path("accounts/", include('allauth.urls')),
+    path('csvToModel', views.csvToModel, name='csvToModel'), # db 설정용 url
+
 ]+ static(settings.STATIC_URL, document_root = settings.STATIC_ROOT) +static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
