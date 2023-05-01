@@ -2,7 +2,12 @@
 {% load socialaccount %}
 {% load static %}
 <!-- 여기서 부터 넣으면 됨 -->
-<div>성공</div>
+<h2>User Form</h2>
+<form action="{% url 'blind:info_update' %}" method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Submit</button>
+</form>
 
 <!-- 여기까지-->
 {% endblock content %}>

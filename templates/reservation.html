@@ -4,6 +4,11 @@
 {% if user.is_authenticated%}
 <a href="{% url 'blind:log_out'%}" class="btn btn-outline-success mt-2">Logout</a>
 <h6>{{user.username}}님이 로그인중</h6>
+{% if user.phone_number %}
+<h6>전화번호: {{user.phone_number}}</h6>
+{% else %}
+<a href="{% url 'blind:info_update'%}">전화번호, 성별 등록</a>
+{% endif %}
 {% else %}
 <form action="{% provider_login_url 'kakao' %}" method="post">
   {% csrf_token %}
