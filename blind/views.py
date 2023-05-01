@@ -12,3 +12,6 @@ def reservation(request):
 def log_out(request):
     logout(request)
     return redirect("blind:reservation")
+
+def info_update(request):
+    return render(request, "info_update.html")

@@ -1,27 +1,15 @@
+{% extends 'base.html'%} {%block content%}
 {% load socialaccount %}
-{% providers_media_js %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/reset.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/reservation.css' %}" />
-    <title>Document</title>
-  </head>
-  <body>
-    {% if user.is_authenticated%}
-    <a href="{% url 'blind:log_out'%}" class="btn btn-outline-success mt-2">Logout</a>
-    <h6>{{user.username}}님이 로그인중</h6>
-    {% else %}
-    <form action="{% provider_login_url 'kakao' %}" method="post">
-      {% csrf_token %}
-      <button type="submit" class="">
-        카카오 로그인
-      </button>
-    </form>
-    {% endif %} 
-  </body>
-</html>
+{% if user.is_authenticated%}
+<a href="{% url 'blind:log_out'%}" class="btn btn-outline-success mt-2">Logout</a>
+<h6>{{user.username}}님이 로그인중</h6>
+{% else %}
+<form action="{% provider_login_url 'kakao' %}" method="post">
+  {% csrf_token %}
+  <button type="submit" class="">
+    카카오 로그인
+  </button>
+</form>
+{% endif %} 
+{% endblock content %}>
