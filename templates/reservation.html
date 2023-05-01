@@ -7,7 +7,7 @@
 {% if user.phone_number %}
 <h6>전화번호: {{user.phone_number}}</h6>
 {% else %}
-<a href="{% url 'blind:info_update'%}">전화번호, 성별 등록</a>
+<a href="{% url 'blind:info_update'%}">전화번호, 성별, 이름 등록</a>
 {% endif %}
 {% else %}
 <form action="{% provider_login_url 'kakao' %}" method="post">
