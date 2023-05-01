@@ -17,3 +17,4 @@ class Person(models.Model):
     )
     phone_number = models.IntegerField()
     gender = models.IntegerField(choices=GenderChoices.choices)
+    name = models.CharField(max_length=20)

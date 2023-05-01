@@ -7,4 +7,4 @@ class PersonForm(forms.ModelForm):
 
     class Meta:
         model = Person
-        fields = ('phone_number', 'gender')
+        fields = ('phone_number', 'gender', 'name')

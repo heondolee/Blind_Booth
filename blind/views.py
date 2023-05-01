@@ -33,6 +33,7 @@ def info_update(request):
             print(person.phone_number)
             print(person.gender)
             print(person.user.username)
+            print(person.name)
             return redirect("blind:reservation")
     else:
         form = PersonForm(instance=person)
