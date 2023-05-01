@@ -36,17 +36,17 @@ def log_out(request):
     logout(request)
     return redirect("blind:reservation")
 
-def sign_up(request):
-    if request.method == "POST":
-        form = forms.SignupForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return render(request, "eservation.html")
-        return redirect("blind:reservation")
-    else:
-        form = forms.SignupForm()
-        context = {
-            "form":form,
-        }
-        return render(request, "reservation.html", context=context)
+# def sign_up(request):
+#     if request.method == "POST":
+#         form = forms.SignupForm(request.POST)
+#         if form.is_valid():
+#             user = form.save()
+#             login(request, user)
+#             return render(request, "reservation.html")
+#         return redirect("blind:reservation")
+#     else:
+#         form = forms.SignupForm()
+#         context = {
+#             "form":form,
+#         }
+#         return render(request, "reservation.html", context=context)
