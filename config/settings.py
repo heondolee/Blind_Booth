@@ -47,15 +47,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
+
+    'django.contrib.sites',#사이트,url정보 관리 해주는 기능
 
     'blind',
 
     'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
+    'allauth.account', #소셜로그인한 계정관리
+    'allauth.socialaccount', #소셜account 정보관리
 
-    'allauth.socialaccount.providers.kakao',
+    'allauth.socialaccount.providers.kakao', #카카오 소셜로그인
 ]
 
 MIDDLEWARE = [
@@ -151,15 +152,12 @@ AUTH_USER_MODEL = 'blind.User'
 
 #Login BackEnd Settings
 AUTHENTICATION_BACKENDS = (
-    # Needed to login by username in Django admin, regardless of `allauth`
-    # 'django.contrib.auth.backends.ModelBackend',
-    'django.contrib.auth.backends.ModelBackend',
-    # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
+    'django.contrib.auth.backends.ModelBackend',#기본장고유저
+    'allauth.account.auth_backends.AuthenticationBackend',#소셜로그인 인증체계
 )
 
 
-SITE_ID = 1
+SITE_ID = 1 #위에'django.contrib.sites'에 첫번째 인스턴스 사용
 
 ACCOUNT_EMAIL_VERIFICATION = "none"
 
