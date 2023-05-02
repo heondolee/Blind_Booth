@@ -2,6 +2,7 @@
 {% load socialaccount %}
 {% load static %}
 <!-- 여기서 부터 넣으면 됨 -->
+<a href="{% url 'blind:reservation'%}">< 홈으로</a>
 <h2>User Form</h2>
 <form action="{% url 'blind:info_update' %}" method="POST">
   {% csrf_token %}
