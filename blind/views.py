@@ -10,6 +10,7 @@ from django.db.models import Q, Max
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import json
+from django.contrib import messages
 
 def reservation(request):
     return render(request, "reservation.html")
@@ -29,17 +30,35 @@ def reserve_page(request,day,slot):
     return render(request, "reserve_page.html", context=context)
 
 
-def detail(request):
+@login_required
+def detail(request, id, gender):
+    time_box = TimeBox.objects.get(id=id)
     if request.method == 'POST':
-        day = request.POST.get('day')
-        timeSlot = request.POST.get('timeSlot')
+        current_user = request.user
+        person = current_user.person_set.get()
+        if(gender == 1):
+            time_box.man = person
+            time_box.save()
+        elif(gender == 2):
+            time_box.woman = person
+            time_box.save()
+        return redirect(f"/detail/{id}/{gender}")
     else:
-        day = 1
-        timeSlot = 12
-    
-    fillteredTimeBoxs = list(TimeBox.objects.filter(Q(day=day)&Q(timeSlot=timeSlot)))
-    context = {'fillteredTimeBoxs': fillteredTimeBoxs }
-    return render(request, "reservation.html", context=context) 
+        try:
+            person = request.user.person_set.get()
+        except Person.DoesNotExist:
+            messages.warning(request, "전화번호를 등록하세요")
+            return render(request, "reservation.html")
+            # 
+        # -> try 정상작동
+        if(person.gender!=gender):
+            messages.warning(request, "성별이 다릅니다.")
+            return redirect(f"/reserve_page/{time_box.day}/{time_box.timeSlot}")
+        else:
+            pass
+    context = {'time_box': time_box, 'selected_gender' : gender}
+    return render(request, "detail.html", context=context)
+
 
 
 @login_required(login_url='log_in')
@@ -54,17 +73,13 @@ def info_update(request):
         person = current_user.person_set.get()
     except Person.DoesNotExist:
         person = None
-    
+
     if request.method == 'POST':
         form = PersonForm(request.POST, instance=person)
         if form.is_valid():
             person = form.save(commit=False)
             person.user = current_user
             person.save()
-            print(person.phone_number)
-            print(person.gender)
-            print(person.user.username)
-            print(person.name)
             return redirect("blind:reservation")
     else:
         form = PersonForm(instance=person)
@@ -87,9 +102,3 @@ def csvToModel(request):
     a.close()
 
     return HttpResponse('create model~')
-
-@csrf_exempt
-def days(request):
-    req = json.loads(request.body)
-    day = req[day] # 1->화 2-> 수 3->목
-    return JsonResponse({ day : day})
