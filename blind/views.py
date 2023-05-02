@@ -22,8 +22,9 @@ def reserve_page(request,day,slot):
     else:
         menu_day = day
         menu_slot = slot
-    
+    print(menu_day,menu_slot)
     fillteredTimeBoxs = list(TimeBox.objects.filter(Q(day=menu_day)&Q(timeSlot=menu_slot)))
+    print(fillteredTimeBoxs)
     context = {'fillteredTimeBoxs': fillteredTimeBoxs, 'menu_day':menu_day, 'menu_slot':menu_slot}
     return render(request, "reserve_page.html", context=context)
 

@@ -2,6 +2,7 @@
 {% load socialaccount %}
 {% load static %}
 <!-- 여기서 부터 넣으면 됨 -->
+<a href="{% url 'blind:reservation'%}">< 홈으로</a>
 <form id="dayslotform" action="/reserve_page/1/12" method="post">
   {% csrf_token %}
   <div class="content-box">
@@ -76,13 +77,22 @@
         <div class="box-timeBox">
           <div class="timebox-timeMin">{{timeBox.timeMin}}</div>
           <div class="box-gender">
-            <form action="{% url 'blind:detail'%}" method="post">
-              <button type="submit" class="btn-man" value="1" name="selectedGender">남자{{timeBox.man}}</button>
-              <div>매칭중</div>
-              <button type="submit" class="btn-woman" value="2" name="selectedGender">여자{{timeBox.woman}}</button>
-            </form>
+            <button class="btn-man" >
+              {% if timeBox.man %}
+              남자 신청마감
+              {% else %}
+              남자 신청하기
+              {% endif %}
+            </button>
+            <div>매칭중</div>
+            <button class="btn-woman" >
+              {% if timeBox.woman %}
+              여자 신청마감
+              {% else %}
+              여자 신청하기
+              {% endif %}
+            </button>
           </div>
-        </div>
         {% endfor %}
       </div>
     </div>
