@@ -2,6 +2,7 @@
 {% load socialaccount %}
 {% load static %}
 <!-- 여기서 부터 넣으면 됨 -->
+<a href="{% url 'blind:reservation'%}">< 홈으로</a>
 <h2>예약 상세</h2>
 <div>요일 : {{time_box.day}}</div>
 <div>시간 : {{time_box.timeSlot}}시{{time_box.timeMin}}분</div>
@@ -28,11 +29,10 @@
   <div>여자 비었음</div>
 {% endif %}
 
-{% if selected_gender == 1 %}
+{% if gender == 1 %}
   {% if time_box.man %}
-    <div>남자 신청완료</div>
   {% else %}
-    <form action="/detail/{{timeBox.id}}/1" method="post">
+    <form action="/detail/{{time_box.id}}/1" method="post">
       {% csrf_token %}
       <button type="submit" value="1" class="" name="apply_gender">
         남자 신청하기
@@ -41,9 +41,8 @@
   {% endif %}
 {% else %}
   {% if time_box.woman %}
-    <div>여자 신청완료</div>
   {% else %}
-    <form action="/detail/{{timeBox.id}}/2" method="post">
+    <form action="/detail/{{time_box.id}}/2" method="post">
       {% csrf_token %}
       <button type="submit" value="2" class="" name="apply_gender">
         여자 신청하기

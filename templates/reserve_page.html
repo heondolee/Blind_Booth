@@ -1,5 +1,6 @@
 {% extends 'base.html'%} {%block content%}
 {% load socialaccount %}
+{% load mathfilters %}
 {% load static %}
 <!-- 여기서 부터 넣으면 됨 -->
 <a href="{% url 'blind:reservation'%}">< 홈으로</a>
@@ -79,21 +80,21 @@
       <div class="right-time-box">
         {% for timeBox in fillteredTimeBoxs%}
         <div class="box-timeBox">
-          <div class="timebox-timeMin">{{timeBox.timeSlot}} : {{timeBox.timeMin}}분 시작</div>
+          <div class="timebox-timeMin">{{timeBox.timeSlot}}:{{timeBox.timeMin}} ~ {{timeBox.timeSlot}}:{{timeBox.timeMin|add:10}}</div>
           <div class="box-gender">
             {% if timeBox.man %}
-            <div>남자 신청마감</div>
+            <div>남자 마감</div>
             {% else %}
               <a class="btn-man" href="/detail/{{timeBox.id}}/1">
-              남자 신청하기
+              남자 신청
               </a>
             {% endif %}
             <div>매칭중</div>
             {% if timeBox.woman %}
-            <div>여자 신청마감</div>
+            <div>여자 마감</div>
             {% else %}
               <a class="btn-woman" href="/detail/{{timeBox.id}}/2">
-                여자 신청하기
+                여자 신청
               </a>
             {% endif %}
           </div>

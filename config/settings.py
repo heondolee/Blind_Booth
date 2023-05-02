@@ -61,6 +61,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'mathfilters',
+
     'django.contrib.sites',#사이트,url정보 관리 해주는 기능
 
     'blind',
