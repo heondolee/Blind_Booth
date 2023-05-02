@@ -1,0 +1,109 @@
+{% extends 'base.html'%} {%block content%}
+{% load socialaccount %}
+{% load static %}
+<!-- 여기서 부터 넣으면 됨 -->
+<form id="dayslotform" action="/reserve_page/1/12" method="post">
+  {% csrf_token %}
+  <div class="content-box">
+    <fieldset id="group1">
+      {% if menu_day == 1 %}
+      <input type="radio" name="day" value="1" id="menu-day1" checked/>
+      {% else %}
+      <input type="radio" name="day" value="1" id="menu-day1" />
+      {% endif %}
+      화 5/9
+      {% if menu_day == 2 %}
+      <input type="radio" name="day" value="2" id="menu-day2" checked/>
+      {% else %}
+      <input type="radio" name="day" value="2" id="menu-day2" />
+      {% endif %}
+      수 5/10
+      {% if menu_day == 3 %}
+      <input type="radio" name="day" value="3" id="menu-day3" checked/>
+      {% else %}
+      <input type="radio" name="day" value="3" id="menu-day3" />
+      {% endif %}
+      목 5/11
+    </fieldset>
+    <div class="big-time-box">
+      <fieldset id="left-time-box">
+        {% csrf_token %}
+        {% if menu_slot == 12 %}
+        <input type="radio" name="timeSlot" value="12" id="menu-timeSlot12" checked/>
+        {% else %}
+        <input type="radio" name="timeSlot" value="12" id="menu-timeSlot12" />
+        {% endif %}
+          12:00 ~ 13:00
+        {% if menu_slot == 13 %}
+        <input type="radio" name="timeSlot" value="13" id="menu-timeSlot13" checked/>
+        {% else %}
+        <input type="radio" name="timeSlot" value="13" id="menu-timeSlot13" />
+        {% endif %}
+          13:00 ~ 14:00
+        {% if menu_slot == 14 %}
+        <input type="radio" name="timeSlot" value="14" id="menu-timeSlot14" checked/>
+        {% else %}
+        <input type="radio" name="timeSlot" value="14" id="menu-timeSlot14" />
+        {% endif %}
+          14:00 ~ 15:00
+        {% if menu_slot == 15 %}
+        <input type="radio" name="timeSlot" value="15" id="menu-timeSlot15" checked/>
+        {% else %}
+        <input type="radio" name="timeSlot" value="15" id="menu-timeSlot15" />
+        {% endif %}
+          15:00 ~ 16:00
+        {% if menu_slot == 16 %}  
+        <input type="radio" name="timeSlot" value="16" id="menu-timeSlot16" checked/>
+        {% else %}
+        <input type="radio" name="timeSlot" value="16" id="menu-timeSlot16" />
+        {% endif %}
+          16:00 ~ 17:00
+        {% if menu_slot == 17 %}  
+        <input type="radio" name="timeSlot" value="17" id="menu-timeSlot17" checked/>
+        {% else %}
+        <input type="radio" name="timeSlot" value="17" id="menu-timeSlot17" />
+        {% endif %}
+          17:00 ~ 18:00
+        {% if menu_slot == 18 %}  
+        <input type="radio" name="timeSlot" value="18" id="menu-timeSlot18" checked/>
+        {% else %}
+        <input type="radio" name="timeSlot" value="18" id="menu-timeSlot18" />
+        {% endif %}
+        18:00 ~ 19:00
+      </fieldset>
+      <div class="right-time-box">
+        {% for timeBox in fillteredTimeBoxs%}
+        <div class="box-timeBox">
+          <div class="timebox-timeMin">{{timeBox.timeMin}}</div>
+          <div class="box-gender">
+            <form action="{% url 'blind:detail'%}" method="post">
+              <button type="submit" class="btn-man" value="1" name="selectedGender">남자{{timeBox.man}}</button>
+              <div>매칭중</div>
+              <button type="submit" class="btn-woman" value="2" name="selectedGender">여자{{timeBox.woman}}</button>
+            </form>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</form>
+
+<script>
+  const dayslotform = document.getElementById("dayslotform");
+  const radios = document.getElementsByName("day");
+  const radios2 = document.getElementsByName("timeSlot");
+  radios.forEach(radio => {
+    radio.addEventListener("click", () => {
+      dayslotform.submit(); // 라디오 버튼을 클릭할 때 폼을 자동으로 제출합니다.
+    });
+  });
+  radios2.forEach(radio2 => {
+    radio2.addEventListener("click", () => {
+      dayslotform.submit(); // 라디오 버튼을 클릭할 때 폼을 자동으로 제출합니다.
+    });
+  });
+</script>
+
+<!-- 여기까지-->
+{% endblock content %}>

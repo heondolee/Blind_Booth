@@ -6,12 +6,40 @@ from django.contrib.auth.decorators import login_required
 from blind.forms import PersonForm
 from blind.models import User, Person, TimeBox
 import csv
-
-
-
+from django.db.models import Q, Max
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+import json
 
 def reservation(request):
     return render(request, "reservation.html")
+
+def reserve_page(request,day,slot):
+    if request.method == 'POST':
+        menu_day = request.POST.get('day')
+        menu_slot = request.POST.get('timeSlot')
+        return redirect(f"/reserve_page/{menu_day}/{menu_slot}")
+    else:
+        menu_day = day
+        menu_slot = slot
+    
+    fillteredTimeBoxs = list(TimeBox.objects.filter(Q(day=menu_day)&Q(timeSlot=menu_slot)))
+    context = {'fillteredTimeBoxs': fillteredTimeBoxs, 'menu_day':menu_day, 'menu_slot':menu_slot}
+    return render(request, "reserve_page.html", context=context)
+
+
+def detail(request):
+    if request.method == 'POST':
+        day = request.POST.get('day')
+        timeSlot = request.POST.get('timeSlot')
+    else:
+        day = 1
+        timeSlot = 12
+    
+    fillteredTimeBoxs = list(TimeBox.objects.filter(Q(day=day)&Q(timeSlot=timeSlot)))
+    context = {'fillteredTimeBoxs': fillteredTimeBoxs }
+    return render(request, "reservation.html", context=context) 
+
 
 @login_required(login_url='log_in')
 def log_out(request):
@@ -58,3 +86,9 @@ def csvToModel(request):
     a.close()
 
     return HttpResponse('create model~')
+
+@csrf_exempt
+def days(request):
+    req = json.loads(request.body)
+    day = req[day] # 1->화 2-> 수 3->목
+    return JsonResponse({ day : day})

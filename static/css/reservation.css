@@ -16,3 +16,28 @@ body {
         height: 100%;
     }
 }
+
+.content-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.big-time-box {
+    display: flex;
+    justify-content: center;
+    gap: 7rem;
+}
+
+#left-time-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.right-time-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
