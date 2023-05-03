@@ -24,13 +24,15 @@ class TimeBox(models.Model):
         Person,
         related_name='man_timebox_set',
         on_delete=models.CASCADE,
-        null=True
+        null=True,
+        blank=True
     )
     woman = models.ForeignKey(
         Person,
         related_name='woman_timebox_set',
         on_delete=models.CASCADE,
-        null=True
+        null=True,
+        blank=True
     )
     day = models.IntegerField()
     timeSlot = models.IntegerField()

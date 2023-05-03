@@ -23,9 +23,9 @@
       <div>나의{{ forloop.counter }}번째 예약</div>
       <div>요일 : {{time_box.day}}요일</div>
       <div>시간 : {{time_box.timeSlot}}:{{time_box.timeMin}}</div>
-
-      {% if time_box.man %}
-        {% if time_box.woman %}
+      <!-- 매칭 완료인 경우 -->
+      {% if time_box.man %} 
+        {% if time_box.woman %} <!-- 남 o, 여 o-->
           <div>매칭완료</div>
 
           {% if person.gender == 1 %}
@@ -53,33 +53,31 @@
               <div>상대방 입금 확인됨</div>
             {% endif %}
           {% endif %}
+        {% else %} <!-- 남 o, 여 x-->
+          <div>남자 본인 신청완료</div>
 
-        {% else %} 
-          {% if person.gender == 1 %}
-            <div>남자 본인 신청완료</div>
+          <form action="/" method="post">
+            {% csrf_token %}
+            <button type="submit" value="{{time_box.id}}" class="" name="cancel_time_box_id">
+              신청 취소하기
+            </button>
+          </form>
 
-            <form action="/" method="post">
-              {% csrf_token %}
-              <button type="submit" value="{{time_box.id}}" class="" name="cancel_time_box_id">
-                신청 취소하기
-              </button>
-            </form>
+          <div>여자 자리있음</div>
+        {% endif %}
+      {% else %} <!-- 남 x, 여 o-->
+        {% if time_box.woman %}
+          <div>남자 자리있음</div>
+          <div>여자 본인 신청완료</div>
 
-            <div>여자 자리있음</div>
-          {% else %}
-            <div>남자 자리있음</div>
-            <div>여자 본인 신청완료</div>
-            <form action="/detail/{{time_box.id}}/2" method="post">
-              {% csrf_token %}
-              <button type="submit" value="2" class="" name="apply_gender">
-                신청 취소하기
-              </button>
-            </form>
-          {% endif %}
-
+          <form action="/" method="post">
+            {% csrf_token %}
+            <button type="submit" value="{{time_box.id}}" class="" name="cancel_time_box_id">
+              신청 취소하기
+            </button>
+          </form>
         {% endif %}
       {% endif %}
-
 
     </div>
     {% endfor %}

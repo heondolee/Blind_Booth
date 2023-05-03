@@ -15,8 +15,18 @@ from django.contrib import messages
 def reservation(request):
     if request.method == 'POST': #로그인, person, 예약 보장됨
         time_box_id = request.POST.get('cancel_time_box_id')
-        time_box = TimeBox.objects.filter(id=time_box_id)
-        time_box.delete()
+        time_box = TimeBox.objects.get(id=time_box_id)
+
+        current_user = request.user
+        person = current_user.person_set.get()
+        
+        if(person.gender == 1):
+            time_box.man = None
+            time_box.save()
+        else:
+            time_box.woman = None
+            time_box.save()
+
         messages.warning(request, "신청이 취소되었습니다.")
     else:
         pass
@@ -27,10 +37,6 @@ def reservation(request):
             time_boxs = TimeBox.objects.filter(man=person)
         else:
             time_boxs = TimeBox.objects.filter(woman=person)
-            if(time_boxs):
-                pass
-            else:
-                time_boxs = 0
     except:
         time_boxs = 0
         person = 0

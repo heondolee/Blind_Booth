@@ -9,22 +9,12 @@
 
 {% if time_box.man %}
   <div>남자 신청완료</div>
-    {% if time_box.manIn %}
-    <div>남자 입금완료</div>
-    {% else %}
-    <div>남자 입금대기중</div>
-    {% endif %}
 {% else %}
   <div>남자 비었음</div>
 {% endif %}
 
 {% if time_box.woman %}
   <div>여자 신청완료</div>
-    {% if time_box.womanIn %}
-    <div>여자 입금완료</div>
-    {% else %}
-    <div>여자 입금대기중</div>
-    {% endif %}
 {% else %}
   <div>여자 비었음</div>
 {% endif %}
