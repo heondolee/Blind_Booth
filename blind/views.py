@@ -13,7 +13,36 @@ import json
 from django.contrib import messages
 
 def reservation(request):
-    return render(request, "reservation.html")
+    if request.method == 'POST': #로그인, person, 예약 보장됨
+        time_box_id = request.POST.get('cancel_time_box_id')
+        time_box = TimeBox.objects.filter(id=time_box_id)
+        time_box.delete()
+        messages.warning(request, "신청이 취소되었습니다.")
+    else:
+        pass
+    try:
+        current_user = request.user
+        person = current_user.person_set.get()
+        if (person.gender == 1):
+            time_boxs = TimeBox.objects.filter(man=person)
+        else:
+            time_boxs = TimeBox.objects.filter(woman=person)
+            if(time_boxs):
+                pass
+            else:
+                time_boxs = 0
+    except:
+        time_boxs = 0
+        person = 0
+    context = {'time_boxs': time_boxs, 'person': person,}
+    return render(request, "reservation.html", context)
+
+def timebox_detail(request):
+    person = request.user.person_set.first()
+    man_timeboxes = TimeBox.objects.filter(man=person)
+    woman_timeboxes = TimeBox.objects.filter(woman=person)
+    context = {'man_timeboxes': man_timeboxes, 'woman_timeboxes': woman_timeboxes}
+    return render(request, 'timebox_detail.html', context)
 
 def reserve_page(request,day,slot):
     if request.method == 'POST':
@@ -93,7 +122,7 @@ def csvToModel(request):
     timeBoxes= []
 
     for row in reader_timezone:
-        timeBoxes.append(TimeBox(day=row[0],timeSlot=row[1],timeMin=row[2]))
+        timeBoxes.append(TimeBox(day=row[0],timeSlot=row[1],timeMin=row[2], id=row[0] + row[1] + row[2]))
     
     TimeBox.objects.bulk_create(timeBoxes)
 

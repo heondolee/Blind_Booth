@@ -2,20 +2,95 @@
 {% load socialaccount %}
 {% load static %}
 <!--  -->
+{% for message in messages %}
+    {{ message.tag }}
+    {{ message }}
+{% endfor %}
 
-{% if user.is_authenticated%}
-<a href="{% url 'blind:log_out'%}">Logout</a>
-<h6>{{user.username}}님이 로그인중</h6>
-<a href="{% url 'blind:info_update'%}">전화번호, 성별, 이름</a>
-<br>
-<a href="/reserve_page/1/12">예약하러 가기</a>
+{% if user.is_authenticated %}
+  <a href="{% url 'blind:log_out'%}">Logout</a>
+  <h6>{{user.username}}님이 로그인중</h6>
+  <a href="{% url 'blind:info_update'%}">전화번호, 성별, 이름</a>
+  <br>
+  <a href="/reserve_page/1/12">예약하러 가기</a>
+  <div>나의 예약</div>
+  {% if time_boxs == 0 %}
+    <div>나의 예약이 없습니다.</div>
+  {% else %}
+    {% for time_box in time_boxs%}
+    <br>
+    <div class="my_reserve">
+      <div>나의{{ forloop.counter }}번째 예약</div>
+      <div>요일 : {{time_box.day}}요일</div>
+      <div>시간 : {{time_box.timeSlot}}:{{time_box.timeMin}}</div>
+
+      {% if time_box.man %}
+        {% if time_box.woman %}
+          <div>매칭완료</div>
+
+          {% if person.gender == 1 %}
+            {% if time_box.manIn == False %}
+              <div>본인 입금 확인중</div>
+            {% else %}
+              <div>본인 입금 확인됨</div>
+            {% endif %}
+
+            {% if time_box.womanIn == False %}
+              <div>상대방 입금 확인중</div>
+            {% else %}
+              <div>여자 입금 확인됨</div>
+            {% endif %}
+          {% else %}  
+            {% if time_box.womanIn == False %}
+              <div>본인 입금 확인중</div>
+            {% else %}
+              <div>본인 입금 확인됨</div>
+            {% endif %}
+
+            {% if time_box.manIn == False %}
+              <div>상대방 입금 확인중</div>
+            {% else %}
+              <div>상대방 입금 확인됨</div>
+            {% endif %}
+          {% endif %}
+
+        {% else %} 
+          {% if person.gender == 1 %}
+            <div>남자 본인 신청완료</div>
+
+            <form action="/" method="post">
+              {% csrf_token %}
+              <button type="submit" value="{{time_box.id}}" class="" name="cancel_time_box_id">
+                신청 취소하기
+              </button>
+            </form>
+
+            <div>여자 자리있음</div>
+          {% else %}
+            <div>남자 자리있음</div>
+            <div>여자 본인 신청완료</div>
+            <form action="/detail/{{time_box.id}}/2" method="post">
+              {% csrf_token %}
+              <button type="submit" value="2" class="" name="apply_gender">
+                신청 취소하기
+              </button>
+            </form>
+          {% endif %}
+
+        {% endif %}
+      {% endif %}
+
+
+    </div>
+    {% endfor %}
+  {% endif %}
 {% else %}
-<form action="{% provider_login_url 'kakao' %}" method="post">
-  {% csrf_token %}
-  <button type="submit" class="">
-    카카오 로그인
-  </button>
-</form>
+  <form action="{% provider_login_url 'kakao' %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="">
+      카카오 로그인
+    </button>
+  </form>
 {% endif %}
 
 <!--  -->

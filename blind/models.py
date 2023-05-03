@@ -15,7 +15,7 @@ class Person(models.Model):
         related_name='person_set', 
         on_delete=models.CASCADE
     )
-    phone_number = models.IntegerField()
+    phone_number = models.CharField(max_length=11)
     gender = models.IntegerField(choices=GenderChoices.choices)
     name = models.CharField(max_length=20)
 
@@ -34,6 +34,6 @@ class TimeBox(models.Model):
     )
     day = models.IntegerField()
     timeSlot = models.IntegerField()
-    timeMin = models.IntegerField()
+    timeMin = models.CharField(max_length=2)
     manIn = models.BooleanField(default=False)
     womanIn = models.BooleanField(default=False)
