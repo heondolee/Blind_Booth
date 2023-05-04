@@ -18,4 +18,5 @@ urlpatterns = [
     path("detail/<int:id>/<int:gender>", views.detail, name="detail"),
     path('csvToModel', views.csvToModel, name='csvToModel'), # db 설정용 url
 
-]+ static(settings.STATIC_URL, document_root = settings.STATIC_ROOT) +static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
