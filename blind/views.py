@@ -17,6 +17,7 @@ import time
 import hashlib
 import hmac
 import base64
+import time
 
 
 def	make_signature():
@@ -44,9 +45,8 @@ def send_sms(phone, mached_message):
     data = {
         'type': 'SMS',
         'from': "01032495915",
-        'content': "안녕하세요 암흑 속 미팅 부스입니다." + mached_message 
-        + " 으로 매칭완료 되셨습니다. 아래 계좌로 입급해 주시고 상대방도 같이 입금이 완료되면 예약이 확정됩니다.",
-        'messages': [{'to': "man_phone"}]
+        'content': mached_message,
+        'messages': [{'to': phone}]
     }
 
     response = requests.post(url, headers=headers, json=data)
@@ -125,22 +125,33 @@ def detail(request, id, gender):
         
         if(time_box.man and time_box.woman):
             if(time_box.day == 1):
-                matched_day = '5/9 화'
+                matched_day = '5/9(화)'
             elif(time_box.day == 2):
-                matched_day = '5/10 수'
+                matched_day = '5/10수'
             else:
-                matched_day = '5/11 목'
+                matched_day = '5/11목'
             
-            matched_slot = time_box.timeSlot
+            matched_slot = str(time_box.timeSlot)
             mached_min = time_box.timeMin
-            mached_message = matched_day + matched_slot + "시" + mached_min + "분"
+            mached_message = matched_day + matched_slot + ":" + mached_min
 
-            matched_man = time_box.man_timebox_set.get()
-            matched_woman = time_box.woman_timebox_set.get()
-            man_phone = matched_man.phone_number
-            woman_phone = matched_woman.phone_number
-            send_sms(man_phone, mached_message)
-            send_sms(woman_phone, mached_message)
+            matched_man = time_box.man
+            matched_woman = time_box.woman
+
+            mached_message = matched_day + matched_slot + ":" + mached_min
+            post_message1 = "* 암흑 속 미팅 부스 *\n" + mached_message + "\n매칭성공" 
+            post_message2 = "10000원 입금 후 입금자명을 알려주셔야 예약이 확정됩니다.\n100006770885 토스뱅크\n이*도"
+            my_message = mached_message + "\n남: " + matched_man.phone_number + matched_man.name + "\n여: " + matched_woman.phone_number + matched_woman.name
+
+            send_sms('01032495915', my_message)
+            time.sleep(0.5)
+            send_sms(matched_man.phone_number, post_message1)
+            time.sleep(1)
+            send_sms(matched_woman.phone_number, post_message1)
+            time.sleep(1)
+            send_sms(matched_man.phone_number, post_message2)
+            time.sleep(1)
+            send_sms(matched_woman.phone_number, post_message2)
 
         return redirect(f"/detail/{id}/{gender}")
     else:
@@ -158,6 +169,9 @@ def detail(request, id, gender):
             pass
     context = {'time_box': time_box, 'gender' : gender}
     return render(request, "detail.html", context=context)
+
+def delay_message():
+    pass
 
 
 
