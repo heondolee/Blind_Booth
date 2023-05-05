@@ -27,6 +27,7 @@ body {
 
 .ten_min {
     font-family: 'Montserrat';
+    width: 100%;
     font-style: normal;
     font-weight: 700;
     font-size: 1.2rem;
