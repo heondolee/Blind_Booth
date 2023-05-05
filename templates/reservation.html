@@ -69,7 +69,6 @@
         {% if time_box.woman %} <!-- 남 x, 여 o-->
           <div>남자 자리있음</div>
           <div>여자 본인 신청완료</div>
-
           <form action="/" method="post">
             {% csrf_token %}
             <button type="submit" value="{{time_box.id}}" class="" name="cancel_time_box_id">
@@ -83,12 +82,21 @@
     {% endfor %}
   {% endif %}
 {% else %}
+<div class="reserve_container">
+  <div class="ten_min">10분 간의 잊지 못할</div>
+  <div class="main_title">암흑 속<br>미팅. 🌝</div>
+  <img src="" alt="">
   <form action="{% provider_login_url 'kakao' %}" method="post">
     {% csrf_token %}
-    <button type="submit" class="">
-      카카오 로그인
-    </button>
+    <button class="kakao_btn" type="submit" ></button>
   </form>
+  <div class="kakao_warning">카카오 로그인을 통해 어떠한 정보도 수집하지 않습니다.</div>
+  <div class="find_out_container">
+    <div class="booth_find">부스<br>알아보기</div>
+    <div class="reservation_find">예약<br>알아보기</div>
+  </div>
+</div>
+
 {% endif %}
 
 <!--  -->

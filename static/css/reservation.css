@@ -10,47 +10,97 @@ body {
     border: 2px solid #000000;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 500px) {
     body {
         width: 100%;
         height: 100%;
     }
 }
 
-.content-box {
+.reserve_container {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    border: 2px solid #000000;
+    padding: 9rem 0 0 2rem;
 }
 
-.big-time-box {
+.ten_min {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    color: #FF8181;
+    opacity: 0.5;
+}
+
+.main_title {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 4rem;
+    color: #000000;
+    margin: 0 0 4rem;
+}
+.kakao_btn {
+    /* background-image: url(/static/img/reservation/kakao_login_large.svg); */
+    background: url(/static/img/reservation/kakao_login_large.svg) no-repeat;
+    width: 16rem;
+    height: 3.8rem;
+    border: none;
+    margin: 0 0 0 0.5rem;
+}
+
+.kakao_warning{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 0.3rem;
+    /* line-height: 48px; */
+    margin: 0.1rem 0 0 2.3rem;
+    color: #FF3232;
+    opacity: 0.5;
+}
+
+.find_out_container {
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    gap: 1rem;
+    gap: 2rem;
+    margin: 5rem 0 0 0;
+    padding: 0 2rem 0 0;
 }
 
-#left-time-box {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+.booth_find {
+    width: 5rem;
+    height: 4rem;
+    padding: 2rem 1rem;
+    background: rgba(255, 50, 50, 0.63);
+    border-radius: 0.5rem;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 1.7rem;
+    color: #FFFFFF;
 }
 
-.right-time-box {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+.reservation_find{
+    width: 5rem;
+    height: 4rem;
+    padding: 2rem 1rem;
+    background: rgba(255, 50, 50, 0.63);
+    border-radius: 0.5rem;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 1.7rem;
+    color: #FFFFFF;
+    margin: 1.5rem 0;
+
 }
 
-.box-gender {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
 
-.box-timeBox {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
+
 
