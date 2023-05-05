@@ -9,7 +9,7 @@ from django.conf.urls.static import static
 app_name = "blind"
 
 urlpatterns = [
-    path('admins/', admin.site.urls),
+    path('manage/', admin.site.urls),
     path('', views.reservation, name='reservation'),
     path('reserve_page/<int:day>/<int:slot>', views.reserve_page, name='reserve_page'),
     path("logout/", views.log_out, name="log_out"),
