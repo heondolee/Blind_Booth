@@ -2,85 +2,109 @@
 {% load socialaccount %}
 {% load static %}
 <!--  -->
-{% for message in messages %}
-    {{ message.tag }}
-    {{ message }}
-{% endfor %}
 
 {% if user.is_authenticated %}
-  <a href="{% url 'blind:log_out'%}">Logout</a>
-  <h6>{{user.username}}님이 로그인중</h6>
-  <a href="{% url 'blind:info_update'%}">전화번호, 성별, 이름</a>
-  <br>
-  <a href="/reserve_page/1/12">예약하러 가기</a>
-  <div>나의 예약</div>
-  {% if time_boxs == 0 %}
-    <div>나의 예약이 없습니다.</div>
-  {% else %}
-    {% for time_box in time_boxs%}
-    <br>
-    <div class="my_reserve">
-      <div>나의{{ forloop.counter }}번째 예약</div>
-      <div>요일 : {{time_box.day}}요일</div>
-      <div>시간 : {{time_box.timeSlot}}:{{time_box.timeMin}}</div>
-      <!-- 매칭 완료인 경우 -->
-      {% if time_box.man %} 
-        {% if time_box.woman %} <!-- 남 o, 여 o-->
-          <div>매칭완료</div>
+  <div class="login_container">
+    <div class="title_logout">
+      <div class="title_name"></div>
+      <a href="{% url 'blind:log_out'%}">로그아웃</a>
+    </div>
+    <div class="message_box">
+      {% for message in messages %}
+        {{ message.tag }}
+        {{ message }}
+      {% endfor %}
+    </div>
+    <div class="grid_box">
+      <a href="{% url 'blind:info_update'%}">나의<br>정보 입력</a>
+      <div class="booth_find_small"></div>
+      <div class="reservation_find_small"></div>
+      <a href="/reserve_page/1/12">예약하러 가기</a>
+    </div>
+    <div class="my_reservation_box">
+      <div class="my_reservation_title">나의 예약</div>
+      {% if time_boxs == 0 %}
+        <div class="no_reservation">나의 예약이 없습니다.</div>
+      {% else %}
+        {% for time_box in time_boxs%}
+        <div class="my_real_reservation">
+          <!-- <div>나의{{ forloop.counter }}번째 예약</div> -->
+          {% if time_box.day == 1 %}
+          <span class="mached_date">5/9 (화)</span>
+          {% endif %}
+          {% if time_box.day == 2 %}
+          <span class="mached_date">5/10 (수)</span>
+          {% endif %}
+          {% if time_box.day == 3 %}
+          <span class="mached_date">5/11 (목)</span>
+          {% endif %}
+          <span>{{time_box.timeSlot}}:{{time_box.timeMin}} ~ {{time_box.timeSlot}}:{{time_box.timeMin|add:10}}</span>
+          <!-- 매칭 완료인 경우 -->
+          {% if time_box.man %} 
+            {% if time_box.woman %} <!-- 남 o, 여 o-->
+              {% if time_box.manIn == True %}
+                {% if time_box.womanIn == True %}
+                  <div class="now_match">예약 확정</div>
+                {% else %}
+                  <div class="now_match">매칭 완료 !</div>
+                {% endif %}
+              {% else %} 
+                <div class="now_match">매칭 완료 !</div>
+              {% endif %}
+              {% if person.gender == 1 %}
+                {% if time_box.manIn == False %} <!-- 남 입금 x-->
+                  <div class="you_money">본인 입금 확인중</div>
+                {% else %}
+                  <div class="you_money">본인 입금 확인됨</div>
+                {% endif %}
 
-          {% if person.gender == 1 %}
-            {% if time_box.manIn == False %}
-              <div>본인 입금 확인중</div>
-            {% else %}
-              <div>본인 입금 확인됨</div>
-            {% endif %}
+                {% if time_box.womanIn == False %} <!-- 여 입금 x-->
+                  <!-- <div class="you_money">상대방 입금 확인중</div> -->
+                {% else %}
+                  <div class="you_money">상대방 입금 확인됨</div>
+                {% endif %}
+              {% else %}  <!-- 본인 여자 x-->
+                {% if time_box.womanIn == False %} 
+                  <div>본인 입금 확인중</div>
+                {% else %}
+                  <div>본인 입금 확인됨</div>
+                {% endif %}
 
-            {% if time_box.womanIn == False %}
-              <div>상대방 입금 확인중</div>
-            {% else %}
-              <div>여자 입금 확인됨</div>
-            {% endif %}
-          {% else %}  
-            {% if time_box.womanIn == False %}
-              <div>본인 입금 확인중</div>
-            {% else %}
-              <div>본인 입금 확인됨</div>
-            {% endif %}
+                {% if time_box.manIn == False %}
+                  <!-- <div>상대방 입금 확인중</div> -->
+                {% else %}
+                  <div>상대방 입금 확인됨</div>
+                {% endif %}
+              {% endif %}
+            {% else %} <!-- 남 o, 여 x-->
+              <div class="now_match">매칭 대기중</div>
 
-            {% if time_box.manIn == False %}
-              <div>상대방 입금 확인중</div>
-            {% else %}
-              <div>상대방 입금 확인됨</div>
+              <form action="/" method="post">
+                {% csrf_token %}
+                <button type="submit" value="{{time_box.id}}" class="" name="cancel_time_box_id">
+                  신청취소
+                </button>
+              </form>
+            {% endif %}
+          {% else %} <!-- 남 x, 여 o-->
+            {% if time_box.woman %} <!-- 남 x, 여 o-->
+              <div class="now_match">매칭 대기중</div>
+              <form action="/" method="post">
+                {% csrf_token %}
+                <button type="submit" value="{{time_box.id}}" class="" name="cancel_time_box_id">
+                  신청취소
+                </button>
+              </form>
             {% endif %}
           {% endif %}
-        {% else %} <!-- 남 o, 여 x-->
-          <div>남자 본인 신청완료</div>
 
-          <form action="/" method="post">
-            {% csrf_token %}
-            <button type="submit" value="{{time_box.id}}" class="" name="cancel_time_box_id">
-              신청 취소하기
-            </button>
-          </form>
-
-          <div>여자 자리있음</div>
-        {% endif %}
-      {% else %} <!-- 남 x, 여 o-->
-        {% if time_box.woman %} <!-- 남 x, 여 o-->
-          <div>남자 자리있음</div>
-          <div>여자 본인 신청완료</div>
-          <form action="/" method="post">
-            {% csrf_token %}
-            <button type="submit" value="{{time_box.id}}" class="" name="cancel_time_box_id">
-              신청 취소하기
-            </button>
-          </form>
-        {% endif %}
+        </div>
+        {% endfor %}
       {% endif %}
-
     </div>
-    {% endfor %}
-  {% endif %}
+    
+  </div>
+  
 {% else %}
 <div class="reserve_container">
   <div class="ten_min">10분 간의 잊지 못할</div>

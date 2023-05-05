@@ -4,10 +4,11 @@ html {
     align-items: center;
     justify-content: center;
 }
+
 body {
     height: 95vh;
     width: 45vh;
-    /* border: 2px solid #000000; */
+    border: 2px solid #000000;
 }
 
 @media only screen and (max-width: 500px) {
@@ -119,6 +120,10 @@ body {
     opacity: 0.8; /* 버튼을 80% 불투명하게 처리 */
     cursor: pointer;
 }
+
+/* 로그인 완료 후 */
+
+
 
 
 
