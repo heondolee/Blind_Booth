@@ -72,6 +72,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount', #소셜account 정보관리
 
     'allauth.socialaccount.providers.kakao', #카카오 소셜로그인
+
+    'import_export',
 ]
 
 MIDDLEWARE = [

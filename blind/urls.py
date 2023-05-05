@@ -17,6 +17,7 @@ urlpatterns = [
     path("accounts/", include('allauth.urls')),
     path("detail/<int:id>/<int:gender>", views.detail, name="detail"),
     path('csvToModel', views.csvToModel, name='csvToModel'), # db 설정용 url
+    path('dbToCsv', views.dbToCsv, name='dbToCsv'), 
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

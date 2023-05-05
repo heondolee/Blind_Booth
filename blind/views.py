@@ -4,7 +4,7 @@ from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from blind.forms import PersonForm
-from blind.models import User, Person, TimeBox
+from blind.models import User, Person, TimeBox, GenderChoices
 import csv
 from django.db.models import Q, Max
 from django.views.decorators.csrf import csrf_exempt
@@ -13,11 +13,12 @@ import json
 from django.contrib import messages
 import requests
 
-import time
 import hashlib
 import hmac
 import base64
 import time
+import os, sys
+import django
 
 
 def	make_signature():
@@ -216,3 +217,37 @@ def csvToModel(request):
     a.close()
 
     return HttpResponse('create model~')
+
+
+def dbToCsv(request):
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django-erp2.settings")
+    django.setup() 
+
+    csv_path = '/Users/heondo/Desktop/Developer/blind_booth/static/csv/data.csv'
+
+    with open(csv_path, 'w', newline='') as f_csv:
+        field_names = ['day', 'timeSlot', 'timeMin', 'man_phone', 'woman_phone']
+        data_writer = csv.DictWriter(f_csv, fieldnames=field_names) 
+        data_writer.writeheader()
+
+        # Delete the contents of the CSV file
+        f_csv.truncate(0)
+        for time_box in TimeBox.objects.all():
+            if time_box.man == None:
+                manPhone = "none"
+            else:
+                manPhone = time_box.man.phone_number
+            if time_box.woman == None:
+                womanPhone = "none"
+            else:
+                womanPhone = time_box.woman.phone_number
+            data_writer.writerow({
+                'day': time_box.day,
+                'timeSlot': time_box.timeSlot, 
+                'timeMin': time_box.timeMin, 
+                'man_phone': manPhone, 
+                'woman_phone': womanPhone, 
+            })
+                        
+    return HttpResponse('create csv')
+
