@@ -223,7 +223,7 @@ def dbToCsv(request):
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django-erp2.settings")
     django.setup() 
 
-    csv_path = '/Users/heondo/Desktop/Developer/blind_booth/static/csv/data.csv'
+    csv_path = '/home/ubuntu/Blind_Booth/static/csv/data.csv'
 
     with open(csv_path, 'w', newline='') as f_csv:
         field_names = ['day', 'timeSlot', 'timeMin', 'man_phone', 'woman_phone']
