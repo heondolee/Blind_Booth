@@ -4,10 +4,6 @@
 {% load static %}
 <!-- 여기서 부터 넣으면 됨 -->
 <a href="{% url 'blind:reservation'%}">< 홈으로</a>
-{% for message in messages %}
-    {{ message.tag }}
-    {{ message }}
-{% endfor %}
 <form id="dayslotform" action="/reserve_page/1/12" method="post">
   {% csrf_token %}
   <div class="content-box">

@@ -11,6 +11,11 @@ body {
     border: 2px solid #000000;
 }
 
+a {
+    text-decoration: none !important;
+    cursor: pointer !important;
+}
+
 @media only screen and (max-width: 500px) {
     body {
         width: 100%;
@@ -125,6 +130,129 @@ body {
 
 
 
+
+
+
+
+.login_container {
+    background: #2F2F2F;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.title_logout {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.title_name {
+    width: 213px;
+    height: 50px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 48px;
+
+    color: #FFFFFF;
+}
+
+.logout_btn {
+    box-sizing: border-box;
+    padding: 0.5rem 0 0 0;
+    margin: 0.2rem 0 0 0;
+    width: 97px;
+    height: 35px;
+    border: 3px solid #C0C0C0;
+    border-radius: 8px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    color: #DBDBDB;
+}
+
+.message_box {
+    padding: 1rem;
+    text-align: left;
+    position: relative;
+    width: 290px;
+    background: #F5F5F5;
+    border-radius: 8px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    color: #FF8181;
+}
+
+.voice_emoji{
+    margin: 0 1rem 0 0;
+}
+
+.grid_box{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.9rem;
+    margin: 1.5rem 0 0 0;
+}
+
+.my_info_link{
+    display: flex;
+    align-items: center;
+    padding: 0 0.2rem 0 1rem;
+    gap: 1.3rem;
+    width: 125px;
+    height: 90px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 28px;
+    color: #FFFFFF;
+    background: #FF8181;
+    border-radius: 8px;
+}
+
+.booth_find_small{
+    display: flex;
+    align-items: center;
+    padding: 0 0.2rem 0 1rem;
+    gap: 1.3rem;
+    width: 125px;
+    height: 90px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 28px;
+    color: #FFFFFF;
+    background: #393939;
+    border-radius: 8px;
+}
+
+.yellow_tri{
+    border-bottom: 15px solid #FFEE58;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-radius: 4px;
+    transform: matrix(0, -1, -1, 0, 0, 0);
+}
+
+.white_tri{
+    border-bottom: 15px solid white;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-radius: 4px;
+    transform: matrix(0, -1, -1, 0, 0, 0);
+}
 
 
 

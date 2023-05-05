@@ -6,20 +6,28 @@
 {% if user.is_authenticated %}
   <div class="login_container">
     <div class="title_logout">
-      <div class="title_name"></div>
-      <a href="{% url 'blind:log_out'%}">로그아웃</a>
+      <div class="title_name">🌝 암흑 속 미팅</div>
+      <a class="logout_btn" href="{% url 'blind:log_out'%}">로그아웃</a>
     </div>
     <div class="message_box">
-      {% for message in messages %}
-        {{ message.tag }}
-        {{ message }}
-      {% endfor %}
+      <span class="voice_emoji">📢</span>
+      {% if messages %}
+        {% for message in messages %}
+          {{ message.tag }}
+          {{ message }}
+        {% endfor %}
+      {% else %}
+        반가워요
+      {% endif %}
     </div>
     <div class="grid_box">
-      <a href="{% url 'blind:info_update'%}">나의<br>정보 입력</a>
-      <div class="booth_find_small"></div>
-      <div class="reservation_find_small"></div>
-      <a href="/reserve_page/1/12">예약하러 가기</a>
+      <a class="my_info_link" href="{% url 'blind:info_update'%}">나의<br>정보 입력
+        <div class="yellow_tri"></div>
+      </a>
+      <div class="booth_find_small">부스 안내<div class="white_tri"></div></div>
+      <div class="booth_find_small">예약 안내<div class="white_tri"></div></div>
+      <a class="my_info_link" href="/reserve_page/1/12">예약<br>하러 가기
+        <div class="yellow_tri"></div></a>
     </div>
     <div class="my_reservation_box">
       <div class="my_reservation_title">나의 예약</div>
