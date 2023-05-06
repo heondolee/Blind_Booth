@@ -7,6 +7,16 @@
   <a class="back_container" href="{% url 'blind:reservation'%}">
     <div class="back_mark"></div>
     홈
+    <div class="message_box2">
+      {% if messages %}
+        {% for message in messages %}
+          {{ message.tag }}
+          {{ message }}
+        {% endfor %}
+      {% else %}
+        반가워요
+      {% endif %}
+    </div>
   </a>
   <form id="dayslotform" action="/reserve_page/1/12" method="post">
     {% csrf_token %}

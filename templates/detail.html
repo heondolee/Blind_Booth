@@ -2,47 +2,58 @@
 {% load socialaccount %}
 {% load static %}
 <!-- 여기서 부터 넣으면 됨 -->
-<a href="{% url 'blind:reservation'%}">
-  <div class="back_mark"></div>
-  홈
-</a>
-<h2>예약 상세</h2>
-<div>요일 : {{time_box.day}}</div>
-<div>시간 : {{time_box.timeSlot}}시{{time_box.timeMin}}분</div>
+<div class="detail_container">
+  <a class="back_container2" href="{% url 'blind:reservation'%}">
+    <div class="back_mark2"></div>
+    홈
+  </a>
+  <div class="first_info"></div>
+  <div class="second_info"></div>
 
-{% if time_box.man %}
-  <div>남자 신청완료</div>
-{% else %}
-  <div>남자 비었음</div>
-{% endif %}
+  <div class="apply_box2">
+    <div class="date_box2">
+      {% if time_box.day == 1 %}
+      <span class="mached_date2">5/9 (화)</span>
+      {% endif %}
+      {% if time_box.day == 2 %}
+      <span class="mached_date2">5/10 (수)</span>
+      {% endif %}
+      {% if time_box.day == 3 %}
+      <span class="mached_date2">5/11 (목)</span>
+      {% endif %}
+      <span class="mached_date2">{{time_box.timeSlot}}:{{time_box.timeMin}} ~ {{time_box.timeSlot}}:{{time_box.timeMin|add:10}}</span>
+    </div>
+  
+    {% if gender == 1 %}
+      {% if time_box.man %}
+      {% else %}
+        <form action="/detail/{{time_box.id}}/1" method="post">
+          {% csrf_token %}
 
-{% if time_box.woman %}
-  <div>여자 신청완료</div>
-{% else %}
-  <div>여자 비었음</div>
-{% endif %}
+          <button type="submit" value="1" class="btn_man2" name="apply_gender">
+            매칭 신청하기
+            <div class="after_click">클릭 후 5초정도 기다려 주세요</div>
+          </button>
 
-{% if gender == 1 %}
-  {% if time_box.man %}
-  {% else %}
-    <form action="/detail/{{time_box.id}}/1" method="post">
-      {% csrf_token %}
-      <button type="submit" value="1" class="" name="apply_gender">
-        남자 신청하기
-      </button>
-    </form>
-  {% endif %}
-{% else %}
-  {% if time_box.woman %}
-  {% else %}
-    <form action="/detail/{{time_box.id}}/2" method="post">
-      {% csrf_token %}
-      <button type="submit" value="2" class="" name="apply_gender">
-        여자 신청하기
-      </button>
-    </form>
-  {% endif %}
-{% endif %}
+        </form>
+      {% endif %}
+    {% else %}
+      {% if time_box.woman %}
+      {% else %}
+        <form action="/detail/{{time_box.id}}/2" method="post">
+          {% csrf_token %}
+          <button type="submit" value="2" class="" name="apply_gender">
+            여자 신청하기
+          </button>
+        </form>
+      {% endif %}
+    {% endif %}
+  </div>
+
+  
+
+</div>
+
 
 
 <!-- 여기까지-->

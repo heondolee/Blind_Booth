@@ -31,6 +31,18 @@
   transform: matrix(0, -1, 1, 0, 0, 0);
 }
 
+.message_box2 {
+  box-sizing: border-box;
+  padding: 0 0 0 30px;
+  text-align: left;
+  position: relative;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  color: #FF8181;
+}
+
 .days_container{
   display: flex;
   flex-direction: row;

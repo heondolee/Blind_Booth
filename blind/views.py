@@ -142,7 +142,7 @@ def detail(request, id, gender):
 
             mached_message = matched_day + matched_slot + ":" + mached_min
             post_message1 = "* 암흑 속 미팅 부스 *\n" + mached_message + "\n매칭성공" 
-            post_message2 = "10000원 입금 후 입금자명을 알려주셔야 예약이 확정됩니다.\n100006770885 토스뱅크\n이*도"
+            post_message2 = "10000원 입금 후 입금자명을 알려주셔야 예약이 확정됩니다.\n97903132301011 기업은행\n이*도"
             my_message = mached_message + "\n남: " + matched_man.phone_number + matched_man.name + "\n여: " + matched_woman.phone_number + matched_woman.name
 
             send_sms('01032495915', my_message)
@@ -155,7 +155,7 @@ def detail(request, id, gender):
             time.sleep(1)
             send_sms(matched_woman.phone_number, post_message2)
             messages.warning(request, "입금 안내 문자가 발송되었습니다.")
-        return redirect(f"/detail/{id}/{gender}")
+        return redirect(f"/")
     else:
         try:
             person = request.user.person_set.get()
