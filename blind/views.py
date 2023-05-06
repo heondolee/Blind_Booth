@@ -153,7 +153,7 @@ def detail(request, id, gender):
             send_sms(matched_man.phone_number, post_message2)
             time.sleep(1)
             send_sms(matched_woman.phone_number, post_message2)
-
+            messages.warning(request, "입금 안내 문자가 발송되었습니다.")
         return redirect(f"/detail/{id}/{gender}")
     else:
         try:
@@ -167,7 +167,7 @@ def detail(request, id, gender):
             messages.warning(request, "성별이 다릅니다.")
             return redirect(f"/reserve_page/{time_box.day}/{time_box.timeSlot}")
         else:
-            pass
+            messages.warning(request, "매칭 신청이 완료되었습니다.")
     context = {'time_box': time_box, 'gender' : gender}
     return render(request, "detail.html", context=context)
 
