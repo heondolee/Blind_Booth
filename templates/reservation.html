@@ -96,16 +96,16 @@
                 <form action="/" method="post">
                   {% csrf_token %}
                   <button type="submit" value="{{time_box.id}}" class="apply_cancel_btn" name="cancel_time_box_id">
-                    신청취소
+                    신청 취소
                   </button>
                 </form>
               {% endif %}
             {% else %} <!-- 남 x, 여 o-->
               {% if time_box.woman %} <!-- 남 x, 여 o-->
-                <div class="now_match">매칭 대기중</div>
+                <div class="now_match_wait">매칭 대기중</div>
                 <form action="/" method="post">
                   {% csrf_token %}
-                  <a type="submit" value="{{time_box.id}}" class="" name="cancel_time_box_id">
+                  <a type="submit" value="{{time_box.id}}" class="apply_cancel_btn" name="cancel_time_box_id">
                     신청 취소
                   </a>
                 </form>
