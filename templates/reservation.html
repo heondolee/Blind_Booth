@@ -37,80 +37,87 @@
         {% for time_box in time_boxs%}
         <div class="my_real_reservation">
           <!-- <div>나의{{ forloop.counter }}번째 예약</div> -->
-          {% if time_box.day == 1 %}
-          <span class="mached_date">5/9 (화)</span>
-          {% endif %}
-          {% if time_box.day == 2 %}
-          <span class="mached_date">5/10 (수)</span>
-          {% endif %}
-          {% if time_box.day == 3 %}
-          <span class="mached_date">5/11 (목)</span>
-          {% endif %}
-          <span>{{time_box.timeSlot}}:{{time_box.timeMin}} ~ {{time_box.timeSlot}}:{{time_box.timeMin|add:10}}</span>
+          <div class="date_box">
+            {% if time_box.day == 1 %}
+            <span class="mached_date">5/9 (화)</span>
+            {% endif %}
+            {% if time_box.day == 2 %}
+            <span class="mached_date">5/10 (수)</span>
+            {% endif %}
+            {% if time_box.day == 3 %}
+            <span class="mached_date">5/11 (목)</span>
+            {% endif %}
+            <span class="mached_date">{{time_box.timeSlot}}:{{time_box.timeMin}} ~ {{time_box.timeSlot}}:{{time_box.timeMin|add:10}}</span>
+          </div>
+
           <!-- 매칭 완료인 경우 -->
-          {% if time_box.man %} 
-            {% if time_box.woman %} <!-- 남 o, 여 o-->
-              {% if time_box.manIn == True %}
-                {% if time_box.womanIn == True %}
-                  <div class="now_match">예약 확정</div>
-                {% else %}
-                  <div class="now_match">매칭 완료 !</div>
+          <div class="match_info">
+            {% if time_box.man %} 
+              {% if time_box.woman %} <!-- 남 o, 여 o-->
+                {% if time_box.manIn == True %}
+                  {% if time_box.womanIn == True %}
+                    <div class="now_match_clear">예약 확정 ✓</div>
+                  {% else %}
+                    <div class="now_match_fin">매칭 완료 !</div>
+                  {% endif %}
+                {% else %} 
+                  <div class="now_match_fin">매칭 완료 !</div>
                 {% endif %}
-              {% else %} 
-                <div class="now_match">매칭 완료 !</div>
+                <div class="money_info">
+                  {% if person.gender == 1 %}
+                    {% if time_box.manIn == False %} <!-- 남 입금 x-->
+                      <div class="mached_date">본인 입금 확인중</div>
+                    {% else %}
+                      <div class="mached_date">본인 입금 확인됨</div>
+                    {% endif %}
+
+                    {% if time_box.womanIn == False %} <!-- 여 입금 x-->
+                      <!-- <div class="you_money">상대방 입금 확인중</div> -->
+                    {% else %}
+                      <div class="mached_date">상대 입금 확인됨</div>
+                    {% endif %}
+                  {% else %}  <!-- 본인 여자 x-->
+                    {% if time_box.womanIn == False %} 
+                      <div>본인 입금 확인중</div>
+                    {% else %}
+                      <div>본인 입금 확인됨</div>
+                    {% endif %}
+
+                    {% if time_box.manIn == False %}
+                      <!-- <div>상대방 입금 확인중</div> -->
+                    {% else %}
+                      <div>상대 입금 확인됨</div>
+                    {% endif %}
+                  {% endif %}
+                </div>
+
+              {% else %} <!-- 남 o, 여 x-->
+                <div class="now_match_wait">매칭 대기중</div>
+
+                <form action="/" method="post">
+                  {% csrf_token %}
+                  <button type="submit" value="{{time_box.id}}" class="apply_cancel_btn" name="cancel_time_box_id">
+                    신청취소
+                  </button>
+                </form>
               {% endif %}
-              {% if person.gender == 1 %}
-                {% if time_box.manIn == False %} <!-- 남 입금 x-->
-                  <div class="you_money">본인 입금 확인중</div>
-                {% else %}
-                  <div class="you_money">본인 입금 확인됨</div>
-                {% endif %}
-
-                {% if time_box.womanIn == False %} <!-- 여 입금 x-->
-                  <!-- <div class="you_money">상대방 입금 확인중</div> -->
-                {% else %}
-                  <div class="you_money">상대방 입금 확인됨</div>
-                {% endif %}
-              {% else %}  <!-- 본인 여자 x-->
-                {% if time_box.womanIn == False %} 
-                  <div>본인 입금 확인중</div>
-                {% else %}
-                  <div>본인 입금 확인됨</div>
-                {% endif %}
-
-                {% if time_box.manIn == False %}
-                  <!-- <div>상대방 입금 확인중</div> -->
-                {% else %}
-                  <div>상대방 입금 확인됨</div>
-                {% endif %}
+            {% else %} <!-- 남 x, 여 o-->
+              {% if time_box.woman %} <!-- 남 x, 여 o-->
+                <div class="now_match">매칭 대기중</div>
+                <form action="/" method="post">
+                  {% csrf_token %}
+                  <a type="submit" value="{{time_box.id}}" class="" name="cancel_time_box_id">
+                    신청취소
+                  </a>
+                </form>
               {% endif %}
-            {% else %} <!-- 남 o, 여 x-->
-              <div class="now_match">매칭 대기중</div>
-
-              <form action="/" method="post">
-                {% csrf_token %}
-                <button type="submit" value="{{time_box.id}}" class="" name="cancel_time_box_id">
-                  신청취소
-                </button>
-              </form>
             {% endif %}
-          {% else %} <!-- 남 x, 여 o-->
-            {% if time_box.woman %} <!-- 남 x, 여 o-->
-              <div class="now_match">매칭 대기중</div>
-              <form action="/" method="post">
-                {% csrf_token %}
-                <button type="submit" value="{{time_box.id}}" class="" name="cancel_time_box_id">
-                  신청취소
-                </button>
-              </form>
-            {% endif %}
-          {% endif %}
-
+          </div>
         </div>
         {% endfor %}
       {% endif %}
+      </div>
     </div>
-    
   </div>
   
 {% else %}

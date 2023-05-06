@@ -254,5 +254,132 @@ a {
     transform: matrix(0, -1, -1, 0, 0, 0);
 }
 
+.my_reservation_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 15px;
+    gap: 15px;
+    width: 290px;
+    height: 406px;
+    background: #393939;
+    border-radius: 8px;
+    margin: 20px 0 0 0;
+}
 
+.my_reservation_title {
+    width: 100%;
+    height: 35px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 48px;
+    color: #FFFFFF;
+}
 
+.my_real_reservation {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 15px 25px;
+    box-sizing: border-box;
+    gap: 10px;
+    width: 100%;
+    height: 150px;
+    background: #F5F5F5;
+    border-radius: 8px;
+}
+
+.match_info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.date_box {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.mached_date{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #424242;
+}
+
+.now_match_wait {
+    width: 111.11px;
+    height: 24px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #ED821F;
+}
+
+.now_match_fin {
+    width: 100px;
+    height: 24px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FF8181;
+}
+
+.now_match_clear{
+    width: 100px;
+    /* height: 100%; */
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #5DB075;
+}
+
+.money_info{
+    display: flex;
+    flex-direction: column;
+}
+
+.apply_cancel_btn{
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 96px;
+    height: 35px;
+    background: #DBDBDB;
+    border-radius: 8px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #7B7B7B;
+
+}
