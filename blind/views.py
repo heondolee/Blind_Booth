@@ -197,6 +197,14 @@ def info_update(request):
             person.user = current_user
             person.save()
             messages.warning(request, "나의 정보가 수정되었습니다.")
+            for timebox in person.man_timebox_set.all():
+                timebox.man = None
+                timebox.manIn = False
+                timebox.save()
+            for timebox in person.woman_timebox_set.all():
+                timebox.woman = None
+                timebox.womanIn = False
+                timebox.save()
             return redirect("blind:reservation")
     else:
         form = PersonForm(instance=person)
