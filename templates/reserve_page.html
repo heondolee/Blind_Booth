@@ -58,12 +58,9 @@
           {% for time in times_7%}
             {% if menu_slot == time %}
             <input type="radio" name="timeSlot" value="{{time}}" id="menu-timeSlot{{time}}" checked/>
-            <div class="checked_time_slot_box">
               <label for="menu-timeSlot{{time}}" class="menu_time_slot_checked">
                 {{time}}시
               </label>
-              <div class="checked_slot_mark"></div>
-            </div>
             {% else %}
             <input type="radio" name="timeSlot" value="{{time}}" id="menu-timeSlot{{time}}" />
             <label for="menu-timeSlot{{time}}" class="menu_time_slot">
@@ -78,17 +75,17 @@
             <div class="timebox-timeMin">{{timeBox.timeSlot}}:{{timeBox.timeMin}} ~ {{timeBox.timeSlot}}:{{timeBox.timeMin|add:10}}</div>
             <div class="box-gender">
               {% if timeBox.man %}
-              <div class="btn_done">남자 마감</div>
+              <div class="btn_done">남자<br>마감</div>
               {% else %}
                 <a class="btn_man" href="/detail/{{timeBox.id}}/1">
-                남자 신청
+                남자<br>신청
                 </a>
               {% endif %}
               {% if timeBox.woman %}
-              <div class="btn_done">여자 마감</div>
+              <div class="btn_done">여자<br>마감</div>
               {% else %}
                 <a class="btn_man" href="/detail/{{timeBox.id}}/2">
-                  여자 신청
+                  여자<br>신청
                 </a>
               {% endif %}
             </div>
