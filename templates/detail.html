@@ -40,12 +40,15 @@
     {% else %}
       {% if time_box.woman %}
       {% else %}
-        <form action="/detail/{{time_box.id}}/2" method="post">
-          {% csrf_token %}
-          <button type="submit" value="2" class="" name="apply_gender">
-            여자 신청하기
-          </button>
-        </form>
+      <form action="/detail/{{time_box.id}}/2" method="post">
+        {% csrf_token %}
+
+        <button type="submit" value="2" class="btn_man2" name="apply_gender">
+          매칭 신청하기
+          <div class="after_click">클릭 후 5초정도 기다려 주세요</div>
+        </button>
+
+      </form>
       {% endif %}
     {% endif %}
   </div>
