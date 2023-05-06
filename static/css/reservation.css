@@ -27,7 +27,6 @@ a {
     flex-direction: column;
     align-items: center;
     padding: 9rem 0 0 0;
-    height: 100%;
 }
 
 .ten_min {
@@ -141,7 +140,6 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
 }
 
 .title_logout {
