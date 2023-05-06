@@ -21,12 +21,12 @@
       {% endif %}
     </div>
     <div class="grid_box">
-      <a class="my_info_link" href="{% url 'blind:info_update'%}">나의<br>정보 입력
+      <a class="my_info_link" href="{% url 'blind:info_update'%}">나의 정보 입력
         <div class="yellow_tri"></div>
       </a>
       <div class="booth_find_small">부스 안내<div class="white_tri"></div></div>
       <div class="booth_find_small">예약 안내<div class="white_tri"></div></div>
-      <a class="my_info_link" href="/reserve_page/1/12">예약<br>하러 가기
+      <a class="my_info_link" href="/reserve_page/1/12">예약하러 가기
         <div class="yellow_tri"></div></a>
     </div>
     <div class="my_reservation_box">
@@ -36,7 +36,6 @@
       {% else %}
         {% for time_box in time_boxs%}
         <div class="my_real_reservation">
-          <!-- <div>나의{{ forloop.counter }}번째 예약</div> -->
           <div class="date_box">
             {% if time_box.day == 1 %}
             <span class="mached_date">5/9 (화)</span>

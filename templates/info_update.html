@@ -2,13 +2,21 @@
 {% load socialaccount %}
 {% load static %}
 <!-- 여기서 부터 넣으면 됨 -->
-<a href="{% url 'blind:reservation'%}">< 홈으로</a>
-<h2>User Form</h2>
-<form action="{% url 'blind:info_update' %}" method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Submit</button>
-</form>
+<div class="detail_container">
+  <a class="back_container2" href="{% url 'blind:reservation'%}">
+    <div class="back_mark2"></div>
+    홈
+  </a>
+  <div class="my_info_info"></div>
+  <div class="info_warning"></div>
+
+  <form class="info_form" action="{% url 'blind:info_update' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="info_save" type="submit">저장하기</button>
+  </form>
+</div>
+
 
 <!-- 여기까지-->
 {% endblock content %}>
