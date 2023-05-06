@@ -35,17 +35,17 @@
 .first_info {
     background: url(/static/img/reserve_info.svg) no-repeat;
     background-size: auto;
-    width: 20rem;
-    height: 15rem;
+    width: 320px;
+    height: 250px;
     margin: 20px 0 0 0;
 }
 
 .second_info {
   background: url(/static/img/second_info.svg) no-repeat;
   background-size: auto;
-  width: 20rem;
-  height: 25rem;
-  margin: 20px 0 0 0;
+  width: 320px;
+  height: 380px;
+  margin: 20px 0 15px 0;
 }
 
 .date_box2{

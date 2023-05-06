@@ -107,7 +107,7 @@ def reserve_page(request,day,slot):
         menu_day = day
         menu_slot = slot
     fillteredTimeBoxs = list(TimeBox.objects.filter(Q(day=menu_day)&Q(timeSlot=menu_slot)))
-    times_7 = [12,13,14,15,16,17,18,19]
+    times_7 = [12,13,14,15,16,17,18]
     context = {'fillteredTimeBoxs': fillteredTimeBoxs, 'menu_day':menu_day, 'menu_slot':menu_slot, 'times_7':times_7}
     return render(request, "reserve_page.html", context=context)
 
