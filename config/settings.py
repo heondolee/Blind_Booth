@@ -46,7 +46,7 @@ SOCIAL_AUTH_PROVIDERS = {
         'KEY': 'YOUR_KAKAO_APP_KEY',
         'SECRET': 'YOUR_KAKAO_APP_SECRET',
         'SCOPE': ['profile', 'email'],
-        'REDIRECT_URI': 'http://localhost:8000/accounts/kakao/login/callback/',
+        'REDIRECT_URI': 'http://meetingindark.com/accounts/kakao/login/callback/',
         'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
         'INIT_PARAMS': {'access_type': 'offline'},
     },
