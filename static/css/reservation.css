@@ -30,6 +30,7 @@ a {
 }
 
 .ten_min {
+    box-sizing: border-box;
     font-family: 'Montserrat';
     width: 100%;
     font-style: normal;
@@ -38,10 +39,11 @@ a {
     line-height: 2rem;
     color: #FF8181;
     opacity: 0.5;
-    padding: 0 0 0 4rem;
+    padding: 0 0 0 2rem;
 }
 
 .main_title {
+    box-sizing: border-box;
     font-family: 'Montserrat';
     text-align: left;
     width: 100%;
@@ -51,7 +53,7 @@ a {
     line-height: 4rem;
     color: #000000;
     margin: 0 0 4rem 0;
-    padding: 0 0 0 4rem;
+    padding: 0 0 0 2rem;
 }
 .kakao_btn {
     /* background-image: url(/static/img/reservation/kakao_login_large.svg); */
@@ -126,6 +128,10 @@ a {
 }
 
 /* 로그인 완료 후 */
+
+
+
+
 
 
 
