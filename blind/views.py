@@ -196,6 +196,7 @@ def info_update(request):
             person = form.save(commit=False)
             person.user = current_user
             person.save()
+            messages.warning(request, "나의 정보가 수정되었습니다.")
             return redirect("blind:reservation")
     else:
         form = PersonForm(instance=person)
