@@ -75,17 +75,17 @@
                     {% else %}
                       <div class="mached_date">상대 입금 확인됨</div>
                     {% endif %}
-                  {% else %}  <!-- 본인 여자 x-->
+                  {% else %}  <!-- 본인 여자 -->
                     {% if time_box.womanIn == False %} 
-                      <div>본인 입금 확인중</div>
+                      <div class="mached_date">본인 입금 확인중</div>
                     {% else %}
-                      <div>본인 입금 확인됨</div>
+                      <div class="mached_date">본인 입금 확인됨</div>
                     {% endif %}
 
                     {% if time_box.manIn == False %}
                       <!-- <div>상대방 입금 확인중</div> -->
                     {% else %}
-                      <div>상대 입금 확인됨</div>
+                      <div class="mached_date">상대 입금 확인됨</div>
                     {% endif %}
                   {% endif %}
                 </div>
