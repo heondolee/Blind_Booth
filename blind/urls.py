@@ -12,6 +12,8 @@ urlpatterns = [
     path('manage/', admin.site.urls),
     path('', views.reservation, name='reservation'),
     path('reserve_page/<int:day>/<int:slot>', views.reserve_page, name='reserve_page'),
+    path("booth_guide/", views.booth_guide, name="booth_guide"),
+    path("reserve_guide/", views.reserve_guide, name="reserve_guide"),
     path("logout/", views.log_out, name="log_out"),
     path("info_update/", views.info_update, name="info_update"),
     path("accounts/", include('allauth.urls')),

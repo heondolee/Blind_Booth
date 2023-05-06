@@ -253,3 +253,8 @@ def dbToCsv(request):
                         
     return HttpResponse('create csv')
 
+def reserve_guide(request):
+    return render(request, "reserve_guide.html")
+
+def booth_guide(request):
+    return render(request, "booth_guide.html")

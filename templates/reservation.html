@@ -24,10 +24,15 @@
       <a class="my_info_link" href="{% url 'blind:info_update'%}">나의 정보 입력
         <div class="yellow_tri"></div>
       </a>
-      <div class="booth_find_small">부스 안내<div class="white_tri"></div></div>
-      <div class="booth_find_small">예약 안내<div class="white_tri"></div></div>
+      <a class="booth_find_small" href="/booth_guide">
+        부스 안내<div class="white_tri"></div>
+      </a>
+      <a class="booth_find_small" href="/reserve_guide">
+        예약 안내<div class="white_tri"></div>
+      </a>
       <a class="my_info_link" href="/reserve_page/1/12">예약하러 가기
-        <div class="yellow_tri"></div></a>
+        <div class="yellow_tri"></div>
+      </a>
     </div>
     <div class="my_reservation_box">
       <div class="my_reservation_title">나의 예약</div>
@@ -130,8 +135,12 @@
   </form>
   <div class="kakao_warning">카카오 로그인을 통해 어떠한 정보도 수집하지 않습니다.</div>
   <div class="find_out_container">
-    <div class="booth_find">부스<br>알아보기</div>
-    <div class="reservation_find">예약<br>알아보기</div>
+    <a class="" href="/booth_guide">
+      <div class="booth_find">부스<br>알아보기</div>
+    </a>
+    <a class="" href="/reserve_guide">
+      <div class="reservation_find">예약<br>알아보기</div>
+    </a>
   </div>
 </div>
 

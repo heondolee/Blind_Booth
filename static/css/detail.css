@@ -138,3 +138,20 @@
   color: #5DB075;
 }
 
+/* booth_guide.css */
+
+.booth_guide_info {
+  background: url(/static/img/reservation/booth_info.svg) no-repeat;
+  background-size: contain;
+  width: 340px;
+  height: 700px;
+  margin: 20px 0 15px 0;
+}
+
+.reserve_guide_info {
+  background: url(/static/img/reservation/reserve_guide.svg) no-repeat;
+  background-size: contain;
+  width: 340px;
+  height: 1200px;
+  margin: 20px 0 15px 0;
+}
