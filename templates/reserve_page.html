@@ -3,102 +3,103 @@
 {% load mathfilters %}
 {% load static %}
 <!-- 여기서 부터 넣으면 됨 -->
-<a href="{% url 'blind:reservation'%}">< 홈으로</a>
-<form id="dayslotform" action="/reserve_page/1/12" method="post">
-  {% csrf_token %}
-  <div class="content-box">
-    <fieldset id="group1">
-      {% if menu_day == 1 %}
-      <input type="radio" name="day" value="1" id="menu-day1" checked/>
-      {% else %}
-      <input type="radio" name="day" value="1" id="menu-day1" />
-      {% endif %}
-      화 5/9
-      {% if menu_day == 2 %}
-      <input type="radio" name="day" value="2" id="menu-day2" checked/>
-      {% else %}
-      <input type="radio" name="day" value="2" id="menu-day2" />
-      {% endif %}
-      수 5/10
-      {% if menu_day == 3 %}
-      <input type="radio" name="day" value="3" id="menu-day3" checked/>
-      {% else %}
-      <input type="radio" name="day" value="3" id="menu-day3" />
-      {% endif %}
-      목 5/11
-    </fieldset>
-    <div class="big-time-box">
-      <fieldset id="left-time-box">
-        {% csrf_token %}
-        {% if menu_slot == 12 %}
-        <input type="radio" name="timeSlot" value="12" id="menu-timeSlot12" checked/>
+<div class="reservation_page_container">
+  <a class="back_container" href="{% url 'blind:reservation'%}">
+    <div class="back_mark"></div>
+    홈
+  </a>
+  <form id="dayslotform" action="/reserve_page/1/12" method="post">
+    {% csrf_token %}
+    <div class="content-box">
+      <fieldset id="group1" class="days_container">
+        {% if menu_day == 1 %}
+          <input type="radio" name="day" value="1" id="menu-day1" checked/>
+          <label for="menu-day1" class="day_box_checked">
+            <div class="days_day_checked">화</div>
+            <div class="days_date_checked">5/9</div>
+          </label>
         {% else %}
-        <input type="radio" name="timeSlot" value="12" id="menu-timeSlot12" />
+          <input type="radio" name="day" value="1" id="menu-day1" />
+          <label for="menu-day1" class="day_box">
+            <div class="days_day">화</div>
+            <div class="days_date">5/9</div>
+          </label>
         {% endif %}
-          12:00 ~ 13:00
-        {% if menu_slot == 13 %}
-        <input type="radio" name="timeSlot" value="13" id="menu-timeSlot13" checked/>
+        {% if menu_day == 2 %}
+          <input type="radio" name="day" value="2" id="menu-day2" checked/>
+          <label for="menu-day2" class="day_box_checked">
+            <div class="days_day_checked">수</div>
+            <div class="days_date_checked">5/10</div>
+          </label>
         {% else %}
-        <input type="radio" name="timeSlot" value="13" id="menu-timeSlot13" />
+          <input type="radio" name="day" value="2" id="menu-day2" />
+          <label for="menu-day2" class="day_box">
+            <div class="days_day">수</div>
+            <div class="days_date">5/10</div>
+          </label>
         {% endif %}
-          13:00 ~ 14:00
-        {% if menu_slot == 14 %}
-        <input type="radio" name="timeSlot" value="14" id="menu-timeSlot14" checked/>
+        {% if menu_day == 3 %}
+          <input type="radio" name="day" value="3" id="menu-day3" checked/>
+          <label for="menu-day3" class="day_box_checked">
+            <div class="days_day_checked">목</div>
+            <div class="days_date_checked">5/11</div>
+          </label>
         {% else %}
-        <input type="radio" name="timeSlot" value="14" id="menu-timeSlot14" />
+          <input type="radio" name="day" value="3" id="menu-day3" />
+          <label for="menu-day3" class="day_box">
+            <div class="days_day">목</div>
+            <div class="days_date">5/11</div>
+          </label>
         {% endif %}
-          14:00 ~ 15:00
-        {% if menu_slot == 15 %}
-        <input type="radio" name="timeSlot" value="15" id="menu-timeSlot15" checked/>
-        {% else %}
-        <input type="radio" name="timeSlot" value="15" id="menu-timeSlot15" />
-        {% endif %}
-          15:00 ~ 16:00
-        {% if menu_slot == 16 %}  
-        <input type="radio" name="timeSlot" value="16" id="menu-timeSlot16" checked/>
-        {% else %}
-        <input type="radio" name="timeSlot" value="16" id="menu-timeSlot16" />
-        {% endif %}
-          16:00 ~ 17:00
-        {% if menu_slot == 17 %}  
-        <input type="radio" name="timeSlot" value="17" id="menu-timeSlot17" checked/>
-        {% else %}
-        <input type="radio" name="timeSlot" value="17" id="menu-timeSlot17" />
-        {% endif %}
-          17:00 ~ 18:00
-        {% if menu_slot == 18 %}  
-        <input type="radio" name="timeSlot" value="18" id="menu-timeSlot18" checked/>
-        {% else %}
-        <input type="radio" name="timeSlot" value="18" id="menu-timeSlot18" />
-        {% endif %}
-        18:00 ~ 19:00
       </fieldset>
-      <div class="right-time-box">
-        {% for timeBox in fillteredTimeBoxs%}
-        <div class="box-timeBox">
-          <div class="timebox-timeMin">{{timeBox.timeSlot}}:{{timeBox.timeMin}} ~ {{timeBox.timeSlot}}:{{timeBox.timeMin|add:10}}</div>
-          <div class="box-gender">
-            {% if timeBox.man %}
-            <div>남자 마감</div>
+      <div class="big-time-box">
+        <fieldset id="left-time-box">
+          {% csrf_token %}
+          {% for time in times_7%}
+            {% if menu_slot == time %}
+            <input type="radio" name="timeSlot" value="{{time}}" id="menu-timeSlot{{time}}" checked/>
+            <div class="checked_time_slot_box">
+              <label for="menu-timeSlot{{time}}" class="menu_time_slot_checked">
+                {{time}}시
+              </label>
+              <div class="checked_slot_mark"></div>
+            </div>
             {% else %}
-              <a class="btn-man" href="/detail/{{timeBox.id}}/1">
-              남자 신청
-              </a>
+            <input type="radio" name="timeSlot" value="{{time}}" id="menu-timeSlot{{time}}" />
+            <label for="menu-timeSlot{{time}}" class="menu_time_slot">
+              {{time}}시
+            </label>
             {% endif %}
-            <div>매칭중</div>
-            {% if timeBox.woman %}
-            <div>여자 마감</div>
-            {% else %}
-              <a class="btn-woman" href="/detail/{{timeBox.id}}/2">
-                여자 신청
-              </a>
-            {% endif %}
+          {% endfor %}
+        </fieldset>
+        <div class="right-time-box">
+          {% for timeBox in fillteredTimeBoxs%}
+          <div class="box-timeBox">
+            <div class="timebox-timeMin">{{timeBox.timeSlot}}:{{timeBox.timeMin}} ~ {{timeBox.timeSlot}}:{{timeBox.timeMin|add:10}}</div>
+            <div class="box-gender">
+              {% if timeBox.man %}
+              <div class="btn_done">남자 마감</div>
+              {% else %}
+                <a class="btn_man" href="/detail/{{timeBox.id}}/1">
+                남자 신청
+                </a>
+              {% endif %}
+              {% if timeBox.woman %}
+              <div class="btn_done">여자 마감</div>
+              {% else %}
+                <a class="btn_man" href="/detail/{{timeBox.id}}/2">
+                  여자 신청
+                </a>
+              {% endif %}
+            </div>
           </div>
-        {% endfor %}
+          {% endfor %}
+        </div>
       </div>
     </div>
-  </div>
-</form>
+  </form>
+</div>
+
 
 <script>
   const dayslotform = document.getElementById("dayslotform");

@@ -1,15 +1,189 @@
+.reservation_page_container{
+  background: #2F2F2F;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 0 0 0;
+}
+
+.back_container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 0 0 0 30px;
+  gap: 10px;
+  height: 40px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 24px;
+  align-items: center;
+  color: #FFFFFF;
+  }
+
+.back_mark {
+  border-bottom: 15px solid white;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-radius: 4px;
+  transform: matrix(0, -1, 1, 0, 0, 0);
+}
+
+.days_container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 25px 0 0 0;
+}
+
+.day_box_checked{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 20px 0 0 0;
+  width: 110px;
+  background: #F5F5F5;
+  border-radius: 8px 8px 0 0;
+  height: 85px;
+}
+
+.day_box{
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 15px 0 0 0;
+  width: 110px;
+  background: #F5F5F5;
+  border-radius: 8px;
+  height: 65px;
+
+}
+
+.days_day{
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 24px;
+  color: #A6A6A6;
+}
+
+.days_date{
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 24px;
+  color: #A6A6A6;
+}
+
+.days_day_checked{
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 24px;
+  color: #FF8181;}
+
+.days_date_checked{
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 24px;
+  color: #FF8181;}
+
 .content-box {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
 }
 
 .big-time-box {
   display: flex;
+  width: 370px;
   flex-direction: row;
-  justify-content: center;
-  gap: 1rem;
+  justify-content: space-between;
+  padding: 25px 30px;
+  height: 692px;
+  background: #F5F5F5;
+  border-radius: 20px;
 }
+
+.menu_time_slot_checked{
+  padding: 30px 0 12px 10px;
+  width: 80px;
+  height: 25px;
+  background: #FF8181;
+  border-radius: 8px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 24px;
+  color: #FFFFFF;
+}
+
+.menu_time_slot{
+  padding: 30px 0 12px 10px;
+  width: 75px;
+  height: 15px;
+  background: white;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 24px;
+  color: #FF8181;
+  border: 3px solid #FF8181;
+  border-radius: 8px;
+}
+
+.checked_time_slot_box{
+  display: flex;
+  flex-direction: row;
+}
+
+.checked_slot_mark{
+  margin: 0 0 0 30px;
+  border-bottom: 20px solid #2F2F2F;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-radius: 4px;
+  transform: matrix(0, -1, -1, 0, 0, 0);
+}
+
+.btn_man {
+  padding: 5px 10px 2px 10px;
+  gap: 10px;
+  background: #F5F5F5;
+  border-radius: 8px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 24px;
+  color: #5DB075;
+}
+
+.btn_done{
+  padding: 5px 10px 2px 10px;
+  gap: 10px;
+  background: #EBEBEB;
+  border-radius: 8px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 24px;
+  color: #989898;
+}
+
+
 
 #left-time-box {
   display: flex;
@@ -20,18 +194,42 @@
 .right-time-box {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .box-gender {
   display: flex;
   flex-direction: row;
+  gap: 0.7rem;
   justify-content: center;
 }
 
 .box-timeBox {
   display: flex;
+  padding: 10px;
   flex-direction: column;
   gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 73.41px;
+  background: #DBDBDB;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
 }
+
+.timebox-timeMin {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 24px;
+  align-items: center;
+  color: #393939;
+}
+
+.reservation_page_container input[type="radio"] {
+  display: none;
+}
+
 

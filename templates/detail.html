@@ -2,7 +2,10 @@
 {% load socialaccount %}
 {% load static %}
 <!-- 여기서 부터 넣으면 됨 -->
-<a href="{% url 'blind:reservation'%}">< 홈으로</a>
+<a href="{% url 'blind:reservation'%}">
+  <div class="back_mark"></div>
+  홈
+</a>
 <h2>예약 상세</h2>
 <div>요일 : {{time_box.day}}</div>
 <div>시간 : {{time_box.timeSlot}}시{{time_box.timeMin}}분</div>
