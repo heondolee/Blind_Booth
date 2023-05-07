@@ -70,27 +70,27 @@
                 <div class="money_info">
                   {% if person.gender == 1 %}
                     {% if time_box.manIn == False %} <!-- 남 입금 x-->
-                      <div class="mached_date">본인 입금 확인중</div>
+                      <div class="mached_date">부스에서 만나요!</div>
                     {% else %}
-                      <div class="mached_date">본인 입금 확인됨</div>
+                      <!-- <div class="mached_date">본인 입금 확인됨</div> -->
                     {% endif %}
 
                     {% if time_box.womanIn == False %} <!-- 여 입금 x-->
                       <!-- <div class="you_money">상대방 입금 확인중</div> -->
                     {% else %}
-                      <div class="mached_date">상대 입금 확인됨</div>
+                      <!-- <div class="mached_date">상대 입금 확인됨</div> -->
                     {% endif %}
                   {% else %}  <!-- 본인 여자 -->
                     {% if time_box.womanIn == False %} 
-                      <div class="mached_date">본인 입금 확인중</div>
+                      <div class="mached_date">부스에서 만나요!</div>
                     {% else %}
-                      <div class="mached_date">본인 입금 확인됨</div>
+                      <!-- <div class="mached_date">본인 입금 확인됨</div> -->
                     {% endif %}
 
                     {% if time_box.manIn == False %}
                       <!-- <div>상대방 입금 확인중</div> -->
                     {% else %}
-                      <div class="mached_date">상대 입금 확인됨</div>
+                      <!-- <div class="mached_date">상대 입금 확인됨</div> -->
                     {% endif %}
                   {% endif %}
                 </div>

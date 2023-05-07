@@ -32,10 +32,10 @@
 }
 
 .first_info {
-    background: url(/static/img/reserve_info.svg) no-repeat;
-    background-size: cover;
-    width: 340px;
-    height: 270px;
+    background: url(/static/img/reservation/match.svg) no-repeat;
+    background-size: contain;
+    width: 350px;
+    height: 326px;
     margin: 20px 0 0 0;
 }
 
@@ -99,7 +99,7 @@
 /* info_update.css */
 
 .my_info_info {
-  background: url(/static/img/my_info_info.svg) no-repeat;
+  background: url(/static/img/reservation/info_update.svg) no-repeat;
   background-size: contain;
   width: 340px;
   height: 310px;
@@ -141,7 +141,7 @@
 /* booth_guide.css */
 
 .booth_guide_info {
-  background: url(/static/img/reservation/booth_info.svg) no-repeat;
+  background: url(/static/img/reservation/booth_guide.svg) no-repeat;
   background-size: contain;
   width: 340px;
   height: 700px;
@@ -149,7 +149,7 @@
 }
 
 .reserve_guide_info {
-  background: url(/static/img/reservation/reserve_guide.svg) no-repeat;
+  background: url(/static/img/reservation/reserve_info.svg) no-repeat;
   background-size: contain;
   width: 340px;
   height: 1200px;
