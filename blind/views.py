@@ -21,6 +21,9 @@ import os, sys
 import django
 
 
+# 선입금제
+
+
 def	make_signature():
     timestamp = str(int(time.time() * 1000))
     access_key = "m2ly34gJo3yRuuy2TS5y"
