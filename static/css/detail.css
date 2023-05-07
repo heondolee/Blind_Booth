@@ -142,11 +142,14 @@
 
 .booth_guide_info {
   background: url(/static/img/reservation/booth_guide2.svg) no-repeat;
+  
   background-size: contain;
   width: 340px;
   height: 700px;
   margin: 20px 0 15px 0;
 }
+
+/* 안녕 */
 
 .reserve_guide_info {
   background: url(/static/img/reservation/reserve_info2.svg) no-repeat;
