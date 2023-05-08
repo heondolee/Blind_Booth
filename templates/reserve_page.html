@@ -69,12 +69,12 @@
             {% if menu_slot == time %}
             <label class="menu_time_slot_checked">
               <input type="radio" name="timeSlot" value="{{time}}" id="menu-timeSlot{{time}}" checked/>
-              {{time}}시
+              {{time}} 시
             </label>
             {% else %}
             <label class="menu_time_slot">
               <input type="radio" name="timeSlot" value="{{time}}" id="menu-timeSlot{{time}}" />
-              {{time}}시
+              {{time}} 시
             </label>
             {% endif %}
           {% endfor %}
