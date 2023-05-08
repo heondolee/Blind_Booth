@@ -144,7 +144,7 @@ def detail(request, id, gender):
             matched_woman = time_box.woman
 
             mached_message = matched_day + matched_slot + ":" + mached_min
-            post_message1 = "* 암흑 속 미팅 부스 *\n" + mached_message + "\n매칭성공 및 예약확정" + "\n예약하신 시간에 부스에서 만나요!" 
+            post_message1 = "* 암흑 속 미팅 부스 *\n" + mached_message + "\n매칭성공 및 예약확정" + "\n예약하신 시간 5분전에 부스에서 만나요!" 
             # post_message2 = "1만원 입금후 입금자명을 문자로 알려주셔야 예약이 확정됩니다.\n97903132301011 기업은행\n이*도"
             my_message = mached_message + "\n남: " + matched_man.phone_number + matched_man.name + "\n여: " + matched_woman.phone_number + matched_woman.name
 
